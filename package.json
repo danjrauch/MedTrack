@@ -2,7 +2,7 @@
   "name": "medtrack-dev",
   "version": "0.0.1",
   "description": "MedTrack Development client",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "test": "mocha",
     "build": "npm run build-clean && npm run build-sass && npm run build-autoprefix",
