@@ -5,15 +5,23 @@ const port = process.env.PORT || 4000
 const path = require('path')
 const request = require('request')
 const json = require('json')
-const session = require('express-session')
+const cookieParser = require('cookie-parser') 
+const cookieSession = require('cookie-session')
+//..const session = require('express-session')
 const express = require('express')
 const app = express()
 
-// Generic Express config
 app.set('port', port) 
 app.set('views', 'views')
 app.use(express.static(__dirname))
-app.use(session({ resave: false, saveUninitialized: false, secret: 'smith' }))
+app.use(cookieSession({
+  name: 'session',
+  keys: ['rauch'],
+
+  // Cookie Options
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}))
+app.use(cookieParser('brad'))
 
 app.listen(app.get('port'), () => {
   console.log('Express server listening on port ' + app.get('port'))
