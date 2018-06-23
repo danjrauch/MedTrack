@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<!--Author: Dan Rauch 
+    Affiliation: Servio Consulting LLC.
+    Using Bulma CSS Framework-->
+
+<style>
+  .footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #74766d;
+    color: white;
+    text-align: center;
+  }
+</style>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="icon" type="image/png" href="public/imgs/pageicon.png"> 
+  <link rel="stylesheet" href="css/bulma.css"> 
+  <title>MedTrack-dev</title>
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+  <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css"></script>
+  <!-- <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> --> </head>
+<body>
+    <nav class="navbar is-transparent">
+        <div class="navbar-brand">
+          <a class="navbar-item">
+            <img src="public/imgs/pageicon.png" alt="medtrack" width="28" height="28">
+          </a>
+        </div>
+      
+        <div id="nb" class="navbar-menu">
+          <div class="navbar-start">
+            <a class="navbar-item" href="/">
+              Home
+            </a>
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">
+                Views
+              </a>
+              <div class="navbar-dropdown is-boxed">
+                <a class="navbar-item" href="/">
+                  One
+                </a>
+                <hr class="navbar-divider">
+                <a class="navbar-item" href="/">
+                  Two
+                </a>
+                <a class="navbar-item" href="/">
+                  Three
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="navbar-end">
+              <!-- <div class="navbar-item">
+                <div class="field is-grouped">
+                  <p class="control">
+                    <a class="button is-white" style="display:inline-block" href="">
+                      <span>Powered By</span>
+                      <img src="" style="float:right;margin-left:0.5em">
+                    </a>
+                  </p>
+                </div>
+              </div> -->
+              <div class="navbar-item">
+                <div class="field is-grouped">
+                  <p class="control">
+                    <a class="button is-black" href="https://github.com/danjrauch/medtrack-dev">
+                      <span class="icon">
+                        <i class="fa fa-github"></i>
+                      </span>
+                      <span>GitHub</span>
+                    </a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+   <div class="block">
+    <section class="hero is-info">
+      <div class="hero-body">
+        <div class="container">
+          <p>
+            <img src="public/imgs/pageicon.png" align="left" height="70" width="70" style="float:left;margin:0 15px 15px 0;" >
+            <h1 class="title is=1">MedTrack</h1>
+            <h2 class="subtitle">Welcome</h2>
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="columns">
+    <div class="column is-3">
+      <div class="tile is-parent">
+        <article class="tile is-child box">
+          <p class="title">What's MedTrack?</p>
+          <div class="content">
+            <p>
+              A personalized shadowing hour tracker for medical students
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+  
+  <footer class="footer">
+      <div class="columns is-centered">
+          <div class="column has-text-centered ">
+            <p class="control">
+              <a class="button is-grey" href=""> <!-- style="display:inline-block" -->
+                <img src="public/imgs/smallpi.png" style="float:left;margin-right:0.4em">
+                <span>MedTrack by Dan Rauch</span>
+              </a>
+            </p>
+          </div>
+          <!-- <div class="column has-text-centered is-2">
+            <a class="button">Button 2</a>
+          </div>
+          <div class="column has-text-centered is-2">
+            <a class="button">Button 3</a>
+          </div>
+          <div class="column has-text-centered is-2">
+            <a class="button">Button 4</a>
+          </div> -->
+        </div>
+  </footer>
+
+</body>
+
+</html>
