@@ -8,6 +8,7 @@ const json = require('json')
 const cookieParser = require('cookie-parser') 
 const cookieSession = require('cookie-session')
 //..const session = require('express-session')
+const bodyParser = require('body-parser') //..need this for sending info from html to node
 const express = require('express')
 const app = express()
 
@@ -22,11 +23,25 @@ app.use(cookieSession({
   maxAge: 24 * 60 * 60 * 1000 // 24 hours
 }))
 app.use(cookieParser('brad'))
+const urlencodedParser = bodyParser.urlencoded({ extended: false }) //..need this for sending info from html to node
 
 app.listen(app.get('port'), () => {
   console.log('Express server listening on port ' + app.get('port'))
 })
 
 app.get('/', (req, res) => {
-    res.render('pages/index.ejs')
+  res.redirect('/login')
+  //res.render('pages/index.ejs')
+})
+
+app.get('/login', (req, res) => {
+  res.render('pages/login.ejs')
+})
+
+app.post('/verifyUser', urlencodedParser, (req, res) => {
+  if (!req.body) return res.sendStatus(400)
+  console.log(req.body.username)
+  console.log(req.body.password)
+
+  //..begin storing and managing user information
 })
