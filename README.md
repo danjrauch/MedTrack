@@ -4,7 +4,7 @@ MedTrack is a personal web client used by medical students to track shadowing ho
 
 ## Used Libraries
 
-* 
+* bcrypt - for storing and retrieving passowords from database
 
 # Collaborators
 
