@@ -18,13 +18,20 @@
     <div class="hero-body">
       <div class="container has-text-centered">
         <div class="column is-4 is-offset-4">
-          <h3 class="title has-text-grey">Login</h3>
-          <p class="subtitle has-text-grey">Please login to proceed.</p>
+          <h3 class="title has-text-grey">Sign Up</h3>
+          <p class="subtitle has-text-grey">Please enter your information to proceed.</p>
           <div class="box">
             <figure class="avatar">
               <img src="public/imgs/pageicon256x256.png">
             </figure>
-            <form method="post" action="/createUser">
+            <%if(typeof errors == "undefined"){%>
+            
+            <% } else { %>
+              <% for (var i = 0; i < errors.length; i++) { %>
+                <div class="notification is-danger"> <%=errors[i].msg%> </div>
+              <%}%>
+            <% } %>
+            <form method="post" action="/signup">
               <div class="field">
                 <div class="control">
                   <input name="name" class="input is-large" type="text" placeholder="Name" autofocus="" required>
@@ -32,14 +39,20 @@
               </div>
 
               <div class="field">
-                <div class="control">
-                  <input name="username" class="input is-large" type="username" placeholder="Username" autofocus="" required>
+                <div class="control has-icons-left">
+                  <input name="username" class="input is-large" type="username" placeholder="Your Username" autofocus="" required>
+                  <span class="icon is-small is-left">
+                    <i class="fa fa-user"></i>
+                  </span>
                 </div>
               </div>
 
               <div class="field">
-                <div class="control">
+                <div class="control has-icons-left">
                   <input name="password" class="input is-large" type="password" placeholder="Password" required>
+                  <span class="icon is-small is-left">
+                    <i class="fa fa-lock"></i>
+                  </span>
                 </div>
               </div>
               <!-- <div class="field">
@@ -53,7 +66,7 @@
           </div>
           <p class="has-text-grey">
             <a href="/login">Login</a> &nbsp;·&nbsp;
-            <a href="/">Need Help?</a>
+            <a href="/">Back</a>
           </p>
         </div>
       </div>

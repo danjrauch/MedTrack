@@ -34,26 +34,24 @@
       
         <div id="nb" class="navbar-menu">
           <div class="navbar-start">
-            <a class="navbar-item" href="/">
+            <a class="navbar-item" href="/home">
               Home
             </a>
-            <div class="navbar-item has-dropdown is-hoverable">
-              <a class="navbar-link">
-                Views
+            <%if(isAuthenticated){%>
+              <a class="navbar-item" href="/profile">
+                Profile
               </a>
-              <div class="navbar-dropdown is-boxed">
-                <a class="navbar-item" href="/">
-                  One
-                </a>
-                <hr class="navbar-divider">
-                <a class="navbar-item" href="/">
-                  Two
-                </a>
-                <a class="navbar-item" href="/">
-                  Three
-                </a>
-              </div>
-            </div>
+              <a class="navbar-item" href="/logout">
+                Logout
+              </a>
+            <% } else { %>
+              <a class="navbar-item" href="/login">
+                Login
+              </a>
+              <a class="navbar-item" href="/signup">
+                Sign Up
+              </a>
+            <% } %>
           </div>
 
           <div class="navbar-end">
@@ -136,3 +134,22 @@
 </body>
 
 </html>
+
+
+<!-- <div class="navbar-item has-dropdown is-hoverable">
+  <a class="navbar-link">
+    Views
+  </a>
+  <div class="navbar-dropdown is-boxed">
+    <a class="navbar-item" href="/home">
+      One
+    </a>
+    <hr class="navbar-divider">
+    <a class="navbar-item" href="/home">
+      Two
+    </a>
+    <a class="navbar-item" href="/home">
+      Three
+    </a>
+  </div>
+</div> -->

@@ -19,10 +19,10 @@ async function checkUser(username, password) {
     const match = await bcrypt.compare(password, user[0].passwordhash) 
 
     if(match) {
-      return 'login successful'
+      return 'successful'
     }
     else{
-      return 'login unsuccessful'
+      return 'unsuccessful'
     }
   }catch (err){
     console.log(err.stack)
