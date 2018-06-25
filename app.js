@@ -92,7 +92,7 @@ app.post('/login', urlencodedParser, async (req, res) => {
     try{
       const status = await auth.checkUser(req.body.username, req.body.password)
       if(status == 'signup'){
-        res.redirect('/signup')
+        res.render('pages/login', {errors: [{msg: 'Sorry, there is no user with that username.'}]})
       }
       else if(status == 'successful'){
         //..create a user session 

@@ -23,7 +23,9 @@
   <title>MedTrack-dev</title>
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
   <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css"></script>
-  <!-- <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> --> </head>
+  <!-- <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> --> 
+  <script src="node_modules/chart.js/dist/Chart.js"></script>
+</head>
 <body>
     <nav class="navbar is-transparent">
         <div class="navbar-brand">
@@ -59,25 +61,72 @@
     </section>
   </div>
 
-  <div class="columns">
-    <div class="column is-3">
-      <div class="tile is-parent">
-        <article class="tile is-child box">
-          <p class="title">Here are the user modules</p>
-          <div class="content">
-            <p>
-              Hello <%=name%>
-            </p>
-          </div>
-        </article>
+  <div class="tile is-ancestor">
+    <div class="tile is-2 is-vertical is-parent">
+      <div class="tile is-child box">
+        <p class="title">Welcome</p>
+        <p class="subtitle">What is up?</p>
+      </div>
+      <div class="tile is-child box">
+        <p class="title">Another</p>
+        <p class="subtitle">What is up bro?</p>
+      </div>
+    </div>
+    <div class="tile is-parent is-5">
+      <div class="tile is-child box">
+        <canvas id="myChart"></canvas>
       </div>
     </div>
   </div>
 
+  <script>
+    var chrt = document.getElementById("myChart").getContext("2d");
+    var data = {
+      labels: ["27 Nov 2010", "27 Nov 2011" , "27 Nov 2012"],
+      datasets: [{
+      label: "Your Data",
+        backgroundColor: "#8f61ff99", //..add alpha with the last two digits of the hex color
+        borderColor: "#8f61ff99",
+        hoverBackgroundColor: "#8f61ff99",
+        hoverBorderColor: "#8f61ff99",
+        data: [65, 59, 80]
+      },
+      {
+        label: "Median Data",
+          backgroundColor: "#88194a99", //..add alpha with the last two digits of the hex color
+          borderColor: "#88194a99",
+          hoverBackgroundColor: "#88194a99",
+          hoverBorderColor: "#88194a99",
+          data: [44, 33, 22]
+        }]
+    }; 
+    var myFirstChart = new Chart(chrt, {
+      type: 'line',
+      data: data,
+      options: {
+        responsive: true, 
+    }
+    });
+    </script>
 </body>
 
 </html>
 
+<!-- <div class="tile is-ancestor">
+  <div class="tile is-4 is-vertical is-parent">
+    <div class="tile is-child box">
+      <p class="title">One</p>
+    </div>
+    <div class="tile is-child box">
+      <p class="title">Two</p>
+    </div>
+  </div>
+  <div class="tile is-parent">
+    <div class="tile is-child box">
+      <p class="title">Three</p>
+    </div>
+  </div>
+</div> -->
 
 <!-- <div class="navbar-item has-dropdown is-hoverable">
   <a class="navbar-link">
