@@ -18,6 +18,7 @@ const express = require('express')
 const db = require(path.resolve( __dirname, "./db.js" ))
 const auth = require(path.resolve( __dirname, "./auth.js" ))
 const signup = require(path.resolve( __dirname, "./signup.js" ))
+const feedback = require(path.resolve( __dirname, "./feedback.js" ))
 const app = express()
 
 app.set('port', port) 
@@ -132,7 +133,7 @@ app.get('/signup', (req, res) => {
   res.render('pages/signup')
 })
 
-app.post('/signup', urlencodedParser, async (req, res) => {
+app.post('/signup', async (req, res) => {
   if (!req.body) return res.sendStatus(400)
   req.checkBody('username', 'Username field cannot be empty.').notEmpty();
   req.checkBody('username', 'Username must be between 4-15 characters long.').len(4, 15);
@@ -173,3 +174,14 @@ function authenticationMiddleware () {
 	  res.redirect('/login')
 	}
 }
+
+app.get('/feedback', (req, res) => {
+  res.render('pages/feedback')
+})
+
+app.post('/feedback', urlencodedParser, (req, res) => {
+  if (!req.body) return res.sendStatus(400)
+  //console.log(typeof req.body.emailbody)
+  res.redirect('/profile')
+  feedback.sendFeedback(req.body.emailbody)
+})
