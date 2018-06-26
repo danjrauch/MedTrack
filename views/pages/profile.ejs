@@ -18,52 +18,55 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="icon" type="image/png" href="public/imgs/pageicon.png"> 
-  <link rel="stylesheet" href="css/bulma.css"> 
+  <link rel="icon" type="image/png" href="public/imgs/pageicon.png">
+  <link rel="stylesheet" href="css/bulma.css">
   <title>MedTrack-dev</title>
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
-  <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css"></script>
-  <!-- <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> --> 
+  <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+  </script>
+  <!-- <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> -->
   <script src="node_modules/chart.js/dist/Chart.js"></script>
 </head>
+
 <body>
-    <nav class="navbar is-transparent">
-        <div class="navbar-brand">
-          <a class="navbar-item">
-            <img src="public/imgs/pageicon.png" alt="medtrack" width="28" height="28">
-          </a>
-        </div>
-      
-        <div id="nb" class="navbar-menu">
-          <div class="navbar-start">
-            <a class="navbar-item" href="/home">
-              Home
-            </a>
-            <a class="navbar-item" href="/logout">
-              Logout
+
+  <!--Uses the module profileModules-->
+
+  <nav class="navbar is-transparent">
+    <div class="navbar-brand">
+      <a class="navbar-item">
+        <img src="public/imgs/pageicon.png" alt="medtrack" width="28" height="28">
+      </a>
+    </div>
+
+    <div id="nb" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="/home">
+          Home
+        </a>
+        <a class="navbar-item" href="/logout">
+          Logout
+        </a>
+      </div>
+
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="field is-grouped">
+            <a class="button is-primary" href="/feedback">
+              Send Feedback
             </a>
           </div>
-
-          <div class="navbar-end">
-              <div class="navbar-item">
-                <div class="field is-grouped">
-                  <a class="button is-info" href="/feedback">
-                    Send Feedback
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
-      </nav>
+      </div>
+    </div>
+  </nav>
 
-   <div class="block">
+  <div class="block">
     <section class="hero is-info">
       <div class="hero-body">
         <div class="container">
           <p>
-            <img src="public/imgs/pageicon.png" align="left" height="70" width="70" style="float:left;margin:0 15px 15px 0;" >
+            <img src="public/imgs/pageicon.png" align="left" height="70" width="70" style="float:left;margin:0 15px 15px 0;">
             <h1 class="title is=1">Your User Profile</h1>
             <h2 class="subtitle">Welcome</h2>
           </p>
@@ -73,52 +76,239 @@
   </div>
 
   <div class="tile is-ancestor">
-    <div class="tile is-2 is-vertical is-parent">
+    <!--FIRST ROW OF TILES-->
+
+    <div class="tile is-4 is-vertical is-parent">
       <div class="tile is-child box">
-        <p class="title">Welcome</p>
-        <p class="subtitle">What is up?</p>
-      </div>
-      <div class="tile is-child box">
-        <p class="title">Another</p>
-        <p class="subtitle">What is up bro?</p>
+        <div class="content">
+          <h2>Updates</h2>
+          <ul>
+            <li>6.25.2018 Add Feedback Form</li>
+            <li>6.26.2018 Add Timeline Feature</li>
+          </ul>
+        </div>
       </div>
     </div>
-    <div class="tile is-parent is-5">
+
+    <div class="tile is-4 is-vertical is-parent">
+      <div class="tile is-child box">
+        <form method="post" action="/entry">
+          <div class="field">
+            <div class="control has-icons-left">
+              <input name="date" class="input" type="date" value=<%=new Date();%>>
+              <!-- <input name="username" class="input is-large" type="username" placeholder="Your Username" autofocus="" required> -->
+              <span class="icon is-small is-left">
+                <i class="fa fa-calendar"></i>
+              </span>
+            </div>
+          </div>
+          <button type="submit" class="button is-block is-primary is-large is-fullwidth">Done</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="tile is-4 is-parent">
       <div class="tile is-child box">
         <canvas id="myChart"></canvas>
       </div>
     </div>
+
   </div>
 
-  <script>
-    var chrt = document.getElementById("myChart").getContext("2d");
-    var data = {
-      labels: ["27 Nov 2010", "27 Nov 2011" , "27 Nov 2012"],
-      datasets: [{
-      label: "Your Data",
-        backgroundColor: "#8f61ff99", //..add alpha with the last two digits of the hex color
-        borderColor: "#8f61ff99",
-        hoverBackgroundColor: "#8f61ff99",
-        hoverBorderColor: "#8f61ff99",
-        data: [65, 59, 80]
-      },
-      {
-        label: "Median Data",
-          backgroundColor: "#88194a99", //..add alpha with the last two digits of the hex color
-          borderColor: "#88194a99",
-          hoverBackgroundColor: "#88194a99",
-          hoverBorderColor: "#88194a99",
-          data: [44, 33, 22]
-        }]
-    }; 
-    var myFirstChart = new Chart(chrt, {
-      type: 'line',
-      data: data,
-      options: {
-        responsive: true, 
-    }
-    });
-    </script>
+  <div class="tile is-ancestor">
+    <!--SECOND ROW OF TILES-->
+
+    <div class="tile is-4 is-parent">
+      <div class="tile is-child box">
+        <div class="timeline">
+          <header class="timeline-header">
+            <span class="tag is-medium is-primary">Start</span>
+          </header>
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <p class="heading">January 2016</p>
+              <p>Timeline content - Can include any HTML element</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-marker is-image is-32x32">
+              <img src="http://bulma.io/images/placeholders/32x32.png">
+            </div>
+            <div class="timeline-content">
+              <p class="heading">February 2016</p>
+              <p>Timeline content - Can include any HTML element</p>
+            </div>
+          </div>
+          <header class="timeline-header">
+            <span class="tag is-primary">2017</span>
+          </header>
+          <div class="timeline-item">
+            <div class="timeline-marker is-icon">
+              <i class="fa fa-flag"></i>
+            </div>
+            <div class="timeline-content">
+              <p class="heading">March 2017</p>
+              <p>Timeline content - Can include any HTML element</p>
+            </div>
+          </div>
+          <div class="timeline-header">
+            <span class="tag is-medium is-primary">End</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tile is-4 is-parent">
+      <div class="tile is-child box">
+        <div class="calendar">
+          <div class="calendar-nav">
+            <div class="calendar-nav-previous-month">
+              <button class="button is-small is-text">
+                <svg viewBox="0 0 50 80" xml:space="preserve">
+                  <polyline fill="none" stroke-width=".5em" stroke-linecap="round" stroke-linejoin="round" points="45.63,75.8 0.375,38.087 45.63,0.375 "></polyline>
+                </svg>
+              </button>
+            </div>
+            <div class="calendar-month">March 2017</div>
+            <div class="calendar-nav-next-month">
+              <button class="button is-small is-text">
+                <svg viewBox="0 0 50 80" xml:space="preserve">
+                  <polyline fill="none" stroke-width=".5em" stroke-linecap="round" stroke-linejoin="round" points="0.375,0.375 45.63,38.087 0.375,75.8 "></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="calendar-container">
+            <div class="calendar-header">
+              <div class="calendar-date">Sun</div>
+              <div class="calendar-date">Mon</div>
+              <div class="calendar-date">Tue</div>
+              <div class="calendar-date">Wed</div>
+              <div class="calendar-date">Thu</div>
+              <div class="calendar-date">Fri</div>
+              <div class="calendar-date">Sat</div>
+            </div>
+            <div class="calendar-body">
+              <div class="calendar-date is-disabled">
+                <button class="date-item">26</button>
+              </div>
+              <div class="calendar-date is-disabled">
+                <button class="date-item">27</button>
+              </div>
+              <div class="calendar-date is-disabled">
+                <button class="date-item">28</button>
+              </div>
+              <div class="calendar-date">
+                <button class="date-item">1</button>
+              </div>
+              <div class="calendar-date">
+                <button class="date-item">2</button>
+              </div>
+              <div class="calendar-date">
+                <button class="date-item">3</button>
+              </div>
+              <div class="calendar-date tooltip" data-tooltip="Today">
+                <button class="date-item is-today">4</button>
+              </div>
+              <div class="calendar-date tooltip" data-tooltip="Not available" disabled="">
+                <button class="date-item">5</button>
+              </div>
+              <div class="calendar-date">
+                <button class="date-item">6</button>
+              </div>
+              <div class="calendar-date">
+                <button class="date-item">7</button>
+              </div>
+              <div class="calendar-date tooltip" data-tooltip="You have appointments">
+                <button class="date-item">8</button>
+              </div>
+              <div class="calendar-date">
+                <button class="date-item">9</button>
+              </div>
+              <div class="calendar-date">
+                <button class="date-item">10</button>
+              </div>
+              <div class="calendar-date">
+                <button class="date-item">11</button>
+              </div>
+              <div class="calendar-date">
+                <button class="date-item">12</button>
+              </div>
+              <div class="calendar-date">
+                <button class="date-item">13</button>
+              </div>
+              <div class="calendar-date">
+                <button class="date-item">14</button>
+              </div>
+              <div class="calendar-date">
+                <button class="date-item">15</button>
+              </div>
+              <div class="calendar-date calendar-range calendar-range-start">
+                <button class="date-item is-active">16</button>
+              </div>
+              <div class="calendar-date calendar-range">
+                <button class="date-item">17</button>
+              </div>
+              <div class="calendar-date calendar-range">
+                <button class="date-item">18</button>
+              </div>
+              <div class="calendar-date calendar-range">
+                <button class="date-item">19</button>
+              </div>
+              <div class="calendar-date calendar-range calendar-range-end">
+                <button class="date-item is-active">20</button>
+              </div>
+              <div class="calendar-date">
+                <button class="date-item">21</button>
+              </div>
+              <div class="calendar-date">
+                <button class="date-item">22</button>
+              </div>
+              <div class="calendar-date">
+                <button class="date-item">23</button>
+              </div>
+              <div class="calendar-date">
+                <button class="date-item">24</button>
+              </div>
+              <div class="calendar-date">
+                <button class="date-item">25</button>
+              </div>
+              <div class="calendar-date">
+                <button class="date-item">26</button>
+              </div>
+              <div class="calendar-date">
+                <button class="date-item">27</button>
+              </div>
+              <div class="calendar-date">
+                <button class="date-item">28</button>
+              </div>
+              <div class="calendar-date">
+                <button class="date-item">29</button>
+              </div>
+              <div class="calendar-date">
+                <button class="date-item">30</button>
+              </div>
+              <div class="calendar-date">
+                <button class="date-item">31</button>
+              </div>
+              <div class="calendar-date is-disabled">
+                <button class="date-item">1</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script type="text/javascript" src="profileModules.js"></script>
+  <script type="text/javascript">
+    makeLineChart()
+  </script>
+
 </body>
 
 </html>

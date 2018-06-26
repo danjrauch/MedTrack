@@ -22,6 +22,7 @@
     "body-parser": "^1.18.3",
     "build": "^0.1.4",
     "bulma": "^0.7.1",
+    "bulma-extensions": "^2.2.1",
     "chart.js": "^2.7.2",
     "connect-pg-simple": "^5.0.0",
     "cookie-parser": "^1.4.3",
