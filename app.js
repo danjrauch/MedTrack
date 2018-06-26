@@ -44,7 +44,7 @@ app.use(session({
   keys: ['yellowstone'],
   resave: false,
   saveUninitialized: false, 
-  // cookie: {secure: true}, 
+  cookie: {secure: true},   //..MAY CAUSE A PROBLEM 6.26.2018
 
   // Cookie Options
   maxAge: 24 * 60 * 60 * 1000 // 24 hours
