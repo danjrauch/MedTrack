@@ -45,7 +45,7 @@ app.use(session({
   keys: ['yellowstone'],
   resave: false,
   saveUninitialized: false, 
-  // cookie: {secure: true},   //..MAY CAUSE A PROBLEM 6.26.2018
+  // cookie: {secure: true},   //..may need for heroku
 
   // Cookie Options
   maxAge: 24 * 60 * 60 * 1000 // 24 hours
@@ -83,7 +83,7 @@ app.post("/login", urlencodedParser, async (req, res) => {
   req.checkBody("username", "Username field cannot be empty.").notEmpty()
   req.checkBody("username", "Username must be between 4-15 characters long.").len(4, 15)
   req.checkBody("password", "Password must be between 8-20 characters long.").len(8, 20)
-  req.checkBody("password","Password must include one lowercase character, one uppercase character, a number, and a special character.").matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*)(?=.*[^a-zA-Z0-9]).{8,}$/,"i")
+  req.checkBody("password","Password must include one lowercase character, one uppercase character, a number, and a special character.").matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.* )(?=.*[^a-zA-Z0-9]).{8,}$/,"i")
   req.checkBody("username","Username can only contain letters, numbers, or underscores.").matches(/^[A-Za-z0-9_-]+$/, "i")
 
   const errors = req.validationErrors()
@@ -128,12 +128,12 @@ app.get("/signup", (req, res) => {
   res.render("pages/signup")
 })
 
-app.post("/signup", async (req, res) => {
+app.post("/signup", urlencodedParser, async (req, res) => {
   if (!req.body) return res.send({error: 'theres an issue'})
   req.checkBody("username", "Username field cannot be empty.").notEmpty()
   req.checkBody("username", "Username must be between 4-15 characters long.").len(4, 15)
   req.checkBody("password", "Password must be between 8-20 characters long.").len(8, 20)
-  req.checkBody("password", "Password must include one lowercase character, one uppercase character, a number, and a special character.").matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*)(?=.*[^a-zA-Z0-9]).{8,}$/,"i")
+  req.checkBody("password", "Password must include one lowercase character, one uppercase character, a number, and a special character.").matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.* )(?=.*[^a-zA-Z0-9]).{8,}$/,"i")
   req.checkBody("username", "Username can only contain letters, numbers, or underscores.").matches(/^[A-Za-z0-9_-]+$/, "i")
 
   const errors = req.validationErrors()
