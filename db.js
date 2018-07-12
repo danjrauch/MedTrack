@@ -5,10 +5,10 @@ module.exports = {
   insert: pgInsert
 }
 
-const connectionString = process.env.DATABASE_URL+'?ssl=true' || 'postgresql://localhost:5432/medtrack'
+const connectionString = process.env.DATABASE_URL || 'postgresql://localhost:5432/medtrack'
 
 const pool = new Pool({
-  connectionString: connectionString,
+  connectionString: connectionString
 })
 
 async function pgQuery(query){
@@ -20,21 +20,21 @@ async function pgInsert(query){ //..query is an object
   return (async () => {
     // note: we don't try/catch this because if connecting throws an exception
     // we don't need to dispose of the client (it will be undefined)
-    // const client = await pool.connect()
+    const client = await pool.connect()
 
     try {
-      await pool.query('BEGIN')
+      await client.query('BEGIN')
       for(i = 0; i<query.values.length; ++i){
-        await pool.query(query.text, query.values[i]) //..multiple inserts wrapped in a transaction
+        await client.query(query.text, query.values[i]) //..multiple inserts wrapped in a transaction
       }
-      await pool.query('COMMIT')
+      await client.query('COMMIT')
       return { status: 'Completed Successfully' } //..to display to screen 
     } catch (e) {
-      await pool.query('ROLLBACK')
+      await client.query('ROLLBACK')
       return e //..to display to screen 
       // throw e //..for internal debugging
     } finally {
-      pool.end()
+      client.release()
     }
   })().catch(e => console.error(e.stack))
 }
