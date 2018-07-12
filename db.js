@@ -22,8 +22,8 @@ async function pgInsert(query){ //..query is an object
     // we don't need to dispose of the client (it will be undefined)
     const client = await pool.connect()
 
-    console.log(process.env.DATABASE_URL)
-  
+    console.log(client)
+
     try {
       await client.query('BEGIN')
       for(i = 0; i<query.values.length; ++i){
