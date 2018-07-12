@@ -5,7 +5,7 @@ module.exports = {
   insert: pgInsert
 }
 
-const connectionString = process.env.DATABASE_URL || "postgresql://localhost:5432/medtrack"
+const connectionString = process.env.DATABASE_URL+'ssl=true' || "postgresql://localhost:5432/medtrack"
 
 const pool = new Pool({
   connectionString: connectionString,
