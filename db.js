@@ -26,6 +26,7 @@ async function pgInsert(query){ //..query is an object
       await client.query('BEGIN')
       for(i = 0; i<query.values.length; ++i){
         await client.query(query.text, query.values[i]) //..multiple inserts wrapped in a transaction
+        console.log('inserted')
       }
       await client.query('COMMIT')
       return { status: 'Completed Successfully' } //..to display to screen 
