@@ -7,7 +7,6 @@ module.exports = {
 }
 
 async function signupUser(firstname, lastname, username, password) {
-  console.log('here')
   try{
     const user = await db.query({
       name: "fetch-user",
