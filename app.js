@@ -29,8 +29,7 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false }) //..need thi
 app.use(cookieParser())
 app.use(expressValidator())
 
-const connectionString =
-  process.env.DATABASE_URL || "postgresql://localhost:5432/medtrack"
+const connectionString = process.env.DATABASE_URL || "postgresql://localhost:5432/medtrack"
 
 let pgPool = new pg.Pool({
   connectionString: connectionString
@@ -83,8 +82,8 @@ app.post("/login", urlencodedParser, async (req, res) => {
   req.checkBody("username", "Username field cannot be empty.").notEmpty()
   req.checkBody("username", "Username must be between 4-15 characters long.").len(4, 15)
   req.checkBody("password", "Password must be between 8-20 characters long.").len(8, 20)
-  req.checkBody("password","Password must include one lowercase character, one uppercase character, a number, and a special character.").matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.* )(?=.*[^a-zA-Z0-9]).{8,}$/,"i")
-  req.checkBody("username","Username can only contain letters, numbers, or underscores.").matches(/^[A-Za-z0-9_-]+$/, "i")
+  req.checkBody("password", "Password must include one lowercase character, one uppercase character, a number, and a special character.").matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.* )(?=.*[^a-zA-Z0-9]).{8,}$/,"i")
+  req.checkBody("username", "Username can only contain letters, numbers, or underscores.").matches(/^[A-Za-z0-9_-]+$/, "i")
 
   const errors = req.validationErrors()
   if(errors) {
@@ -116,7 +115,7 @@ app.post("/login", urlencodedParser, async (req, res) => {
       console.log(err.stack)
     }
   }
-});
+})
 
 app.get("/logout", (req, res) => {
   req.logout()
