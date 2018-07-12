@@ -1,13 +1,11 @@
-const {pg, Pool} = require('pg')
+const {Pool} = require('pg')
 
 module.exports = { 
   query: pgQuery,
   insert: pgInsert
 }
 
-if (process.env.DATABASE_URL) pg.defaults.ssl = true
-
-const connectionString = process.env.DATABASE_URL || 'postgresql://localhost:5432/medtrack'
+const connectionString = process.env.DATABASE_URL+'?ssl=true' || 'postgresql://localhost:5432/medtrack'
 
 const pool = new Pool({
   connectionString: connectionString,
