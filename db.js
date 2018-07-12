@@ -1,4 +1,4 @@
-const {Pool, Client} = require('pg')
+const {pg, Pool} = require('pg')
 
 module.exports = { 
   query: pgQuery,
