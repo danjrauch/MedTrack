@@ -21,12 +21,13 @@ async function pgInsert(query){ //..query is an object
     // note: we don't try/catch this because if connecting throws an exception
     // we don't need to dispose of the client (it will be undefined)
     const client = await pool.connect()
+
+    console.log(process.env.DATABASE_URL)
   
     try {
       await client.query('BEGIN')
       for(i = 0; i<query.values.length; ++i){
         await client.query(query.text, query.values[i]) //..multiple inserts wrapped in a transaction
-        console.log('inserted')
       }
       await client.query('COMMIT')
       return { status: 'Completed Successfully' } //..to display to screen 
