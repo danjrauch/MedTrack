@@ -44,7 +44,7 @@ app.use(session({
   keys: ['yellowstone'],
   resave: false,
   saveUninitialized: false, 
-  // cookie: {secure: true},   //..may need for heroku
+  cookie: {secure: true},   //..may need for heroku
 
   // Cookie Options
   maxAge: 24 * 60 * 60 * 1000 // 24 hours
