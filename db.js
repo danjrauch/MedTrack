@@ -16,7 +16,7 @@ async function pgQuery(query){
   return resp.rows
 }
 
-async function pgInsert(query){ //..query is an object
+function pgInsert(query){ //..query is an object
   return (async () => {
     // note: we don't try/catch this because if connecting throws an exception
     // we don't need to dispose of the client (it will be undefined)
